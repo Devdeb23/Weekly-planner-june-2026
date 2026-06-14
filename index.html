@@ -17,33 +17,91 @@
     <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
         <style>
-            /*I Colori del tema sirena*/
+            /* DARK MODE - Moderno e Frizzante */
             body {
                 font-family: 'Elms Sans';
-                background-color: #0a1f2e;
-                color: #cffafe; 
+                background: linear-gradient(135deg, #0f0f1e 0%, #1a1133 50%, #0d0d1f 100%);
+                color: #ffffff; 
             }
 
-            /*Checkbox*/
+            /* Checkbox Dark Mode */
             .check-circle {
                 appearance: none;
                 width: 14px;
                 height: 14px;
-                border: 1px solid #06b6d4;
+                border: 2px solid #00d9ff;
                 border-radius: 50%;
                 outline: none;
                 cursor: pointer;
+                background-color: rgba(0, 217, 255, 0.15);
+                transition: all 0.3s ease;
             }
 
             .check-circle:checked {
-                background-color: #14b8a6;
+                background-color: #ff006e;
+                border-color: #00d9ff;
+                box-shadow: 0 0 8px #ff006e;
             }
 
-            /* Placeholder color */
+            /* Placeholder color Dark Mode */
             input::placeholder,
             textarea::placeholder {
-                color: #7dd3fc !important;
+                color: #00d9ff !important;
                 opacity: 0.7 !important;
+            }
+
+            /* Testo generale Dark Mode */
+            h1, h2, p, span {
+                color: #ffffff !important;
+            }
+
+            /* Input/Textarea Dark Mode */
+            input,
+            textarea {
+                color: #ffffff !important;
+                background-color: rgba(0, 217, 255, 0.08) !important;
+                border-color: #00d9ff !important;
+            }
+
+            /* Sezione Important Dark Mode - Arancione vivace */
+            div.col-span-3 {
+                background: linear-gradient(135deg, rgba(255, 159, 67, 0.15) 0%, rgba(255, 200, 100, 0.1) 100%) !important;
+                border-left: 4px solid #ff9f43 !important;
+            }
+
+            div.col-span-3 textarea {
+                color: #ffffff !important;
+            }
+
+            /* Sezione Notes Dark Mode - Verde lime vivace */
+            div.col-span-4 {
+                background: linear-gradient(135deg, rgba(0, 217, 109, 0.15) 0%, rgba(100, 230, 150, 0.1) 100%) !important;
+                border-left: 4px solid #00d96d !important;
+            }
+
+            div.col-span-4 textarea {
+                color: #ffffff !important;
+            }
+
+            /* Sezione Habits Dark Mode - Viola vivace */
+            div.col-span-5 {
+                background: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(196, 164, 255, 0.1) 100%) !important;
+                border-left: 4px solid #a78bfa !important;
+            }
+
+            div.col-span-5 textarea {
+                color: #ffffff !important;
+            }
+
+            /* Input/Textarea trasparenti nelle sezioni Important, Notes, Habits Dark Mode */
+            div.col-span-3 input,
+            div.col-span-3 textarea,
+            div.col-span-4 input,
+            div.col-span-4 textarea,
+            div.col-span-5 input,
+            div.col-span-5 textarea {
+                background-color: transparent !important;
+                border-color: transparent !important;
             }
 
             .sidebar {
@@ -62,27 +120,128 @@
                 transform: translateY(-50%);
                 width: 35px;
                 height: 70px;
-                background-color: #0ea5e9;
-                /*border: 2px solid #0a1f2e;
-                border-left: none;*/
+                background: linear-gradient(90deg, #ff006e, #00d9ff);
                 border-radius: 0 12px 12px 0;
                 cursor: pointer;
                 z-index: 101;
-                color:white;
+                color: white;
                 font-size: 20px;
                 font-weight: bold;
                 transition: all 0.3s ease; 
             }          
 
             .toggle-btn:hover {
-                background-color: #0284c7;
                 width: 40px;
+                box-shadow: 0 0 15px rgba(255, 0, 110, 0.5);
             }
 
-            /*Light Mode Mermaid*/
+            /* LIGHT MODE - Colorato e Moderno */
             body.light-mode {
-                background-color: #e0f2fe;
-                color: #0c4a6e;
+                background: linear-gradient(135deg, #f8f6ff 0%, #fff5f2 100%) !important;
+                color: #1a1a1a !important;
+            }
+
+            body.light-mode * {
+                color: #1a1a1a !important;
+            }
+
+            body.light-mode h1, 
+            body.light-mode h2 {
+                color: #000000 !important;
+            }
+
+            body.light-mode p, 
+            body.light-mode span {
+                color: #1a1a1a !important;
+            }
+
+            /* Input e Textarea Light Mode */
+            body.light-mode input,
+            body.light-mode textarea {
+                color: #1a1a1a !important;
+                background-color: rgba(255, 255, 255, 0.9) !important;
+                border-color: #ff006e !important;
+            }
+
+            body.light-mode input::placeholder,
+            body.light-mode textarea::placeholder {
+                color: #999999 !important;
+                opacity: 1 !important;
+            }
+
+            /* Checkbox Light Mode */
+            body.light-mode .check-circle {
+                border: 2px solid #ff006e !important;
+                background-color: rgba(255, 0, 110, 0.1) !important;
+            }
+
+            body.light-mode .check-circle:checked {
+                background-color: #ff006e !important;
+                border-color: #ff006e !important;
+            }
+
+            /* Grid principale Light Mode */
+            body.light-mode div[class*="bg-[#1a3a4a]"] {
+                background-color: #ffffff !important;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+            }
+
+            /* Sezione Important - Arancione vivace */
+            body.light-mode div.col-span-3 {
+                background: linear-gradient(135deg, #fff8f0 0%, #ffe8d6 100%) !important;
+                border-left: 4px solid #ff9f43 !important;
+                color: #1a1a1a !important;
+            }
+
+            body.light-mode div.col-span-3 textarea {
+                color: #1a1a1a !important;
+            }
+
+            /* Sezione Notes - Verde lime vivace */
+            body.light-mode div.col-span-4 {
+                background: linear-gradient(135deg, #f0fff4 0%, #d6ffe8 100%) !important;
+                border-left: 4px solid #00d96d !important;
+                color: #1a1a1a !important;
+            }
+
+            body.light-mode div.col-span-4 textarea {
+                color: #1a1a1a !important;
+            }
+
+            /* Sezione Habits - Viola vivace */
+            body.light-mode div.col-span-5 {
+                background: linear-gradient(135deg, #faf5ff 0%, #ede9fe 100%) !important;
+                border-left: 4px solid #a78bfa !important;
+                color: #1a1a1a !important;
+            }
+
+            /* Input/Textarea trasparenti nelle sezioni Important, Notes, Habits */
+            body.light-mode div.col-span-3 input,
+            body.light-mode div.col-span-3 textarea,
+            body.light-mode div.col-span-4 input,
+            body.light-mode div.col-span-4 textarea,
+            body.light-mode div.col-span-5 input,
+            body.light-mode div.col-span-5 textarea {
+                background-color: transparent !important;
+                border-color: transparent !important;
+            }
+
+            /* Bordi Light Mode */
+            body.light-mode div[class*="border-[#0d7377]"],
+            body.light-mode div[class*="border-[#164e63]"],
+            body.light-mode div[class*="border-[#6F77A6]"],
+            body.light-mode div[class*="border-[#32416B]"] {
+                border-color: #e0e0e0 !important;
+            }
+
+            /* Bottone toggle Light Mode */
+            body.light-mode .toggle-btn {
+                background: linear-gradient(90deg, #ff006e, #ffd319) !important;
+                color: white !important;
+            }
+
+            body.light-mode .toggle-btn:hover {
+                box-shadow: 0 0 15px rgba(255, 0, 110, 0.3) !important;
             }
         </style>
     </head>
@@ -169,13 +328,13 @@
 
         <!-- Sezione: Important-->
         <div class="col-span-3 bg-[#232C4D] p-4 rounded-xl shadow-lg text-[#e7eaf4] flex flex-col">
-          <h2 class="text-[12px] font-bold text-[#e7eaf4] tracking-widest text-center mb-2">Important</h2> 
+          <h2 class="text-[12px] font-bold text-[#e7eaf4] tracking-widest text-center mb-2">IMPORTANT</h2> 
           <textarea class="w-full flex-grow resize-none outline-none text-xs bg-transparent" placeholder="Obbiettivi..."></textarea>   
         </div>  
 
         <!--Notes-->
         <div class="col-span-4 bg-[#232C4D] p-4 rounded-xl shadow-lg text-[#e7eaf4] flex flex-col relative">
-            <h2 class="text-[12px] font-bold text-[#e7eaf4] tracking-widest text-center mb-2">Notes</h2>
+            <h2 class="text-[12px] font-bold text-[#e7eaf4] tracking-widest text-center mb-2">NOTES</h2>
             <textarea class="w-full flex-grow resize-none outline-none text-xs bg-transparent" placeholder="Devo ricordarmi che..."></textarea>
             <!--Sfondo Notes-->
                 <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#565D65 1px, transparent 1.5px); background-size: 12px 12px;"></div>
@@ -183,7 +342,7 @@
 
         <!--Habit Tracker-->
         <div class="col-span-5 bg-[#232C4D] p-4 rounded-xl shadow-lg text-[#e7eaf4]">
-            <h2 class="text-[-12px] font-bold text-[#e7eaf4] trecking-widest text-center mb-2">Habit tracker</h2>
+            <h2 class="text-[-12px] font-bold text-[#e7eaf4] trecking-widest text-center mb-2">HABIT TRACKER</h2>
 
             <!--Intestazione con iniziali dei nomi della settimana-->
             <div class="flex text-[9px] font-bold text-[#e7eaf4] border-b border-[#6F77A6] pb-1 mb-1">
