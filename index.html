@@ -2,110 +2,303 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Planner Settimanale</title>
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <h1 class="text-3xl font-bold mb-6">Planner Settimanale</h1>
+    <button id="theme-toggle" style="position: absolute; top: 32px; right: 32px; background: none; border: none; font-size:24px; cursor: pointer;">☀️</button>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <!--Importo font-->
+    <!--Importo font:-->
+    <!--Raleway-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!--Elms Sans-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <style>
-        /*I Colori del tema notte*/
-        body {
-            font-family: 'Raleway';
-            background-color: #696969;
-            color: #FFFAF0; 
-        }
-    </style>
+        <style>
+            /*I Colori del tema sirena*/
+            body {
+                font-family: 'Elms Sans';
+                background-color: #0a1f2e;
+                color: #cffafe; 
+            }
+
+            /*Checkbox*/
+            .check-circle {
+                appearance: none;
+                width: 14px;
+                height: 14px;
+                border: 1px solid #06b6d4;
+                border-radius: 50%;
+                outline: none;
+                cursor: pointer;
+            }
+
+            .check-circle:checked {
+                background-color: #14b8a6;
+            }
+
+            /* Placeholder color */
+            input::placeholder,
+            textarea::placeholder {
+                color: #7dd3fc !important;
+                opacity: 0.7 !important;
+            }
+
+            .sidebar {
+                transition: transform 0.3s ease, width 0.3s ease;
+                transform: translateX(0);
+            }    
+
+            .sidebar.hidden {
+                transform: translateX(-100%);
+            }
+
+            .toggle-btn {
+                position: fixed;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 35px;
+                height: 70px;
+                background-color: #0ea5e9;
+                /*border: 2px solid #0a1f2e;
+                border-left: none;*/
+                border-radius: 0 12px 12px 0;
+                cursor: pointer;
+                z-index: 101;
+                color:white;
+                font-size: 20px;
+                font-weight: bold;
+                transition: all 0.3s ease; 
+            }          
+
+            .toggle-btn:hover {
+                background-color: #0284c7;
+                width: 40px;
+            }
+
+            /*Light Mode Mermaid*/
+            body.light-mode {
+                background-color: #e0f2fe;
+                color: #0c4a6e;
+            }
+        </style>
     </head>
     <body class="p-8"> <!--Titolo del planner con classi Tailwind per dimensione del testo, grassetto e margine inferiore-->
 
-        <h1 class="text-3xl font-bold mb-6">Planner Settimanale</h1>
+        <button class="toggle-btn" id="toggle-sidebar">☰</button>
 
-        <!--Contenitore principale del planner-->
-        <!--CSS Grid: 7 colonne uguali con un pò di spazio-->
-        <div class="grid grid-cols-7 gap-2 bg-white p-4 roundend-xl shadow-lg h-[500px]">
-        
-            <!--Colonna del lunedì-->
-            <div class="border-r border-teal-100 flex flex-col">
-                <div class="bg-[#FFFAF0] text-center font-bold py-1 rounded">MON</div>
+
+        <!--CSS Grid: Imposto 12 colonne per suddividere-->
+        <div class="grid grid-cols-11 gap-2 bg-[#1a3a4a] p-4 rounded-xl shadow-lg min-h-[500px] text-white">
+
+            <!--Sidebar della to-do list e mese -->
+
+            <div class="col-span-2 border-r border-[#0d7377] pr-4 flex flex-col sidebar">
+
+        <!-- Indico mese e settimana-->
+             <div class="mb-4">
+                <p class="text-xs font-slim text-white">Week of</p>
+                <input type="text" placeholder="ex.15/20 June 2026" class="w-full border-b text-right  border-[#164e63] outline-none text-sm bg-transparent pb-1 scale-75">
+            </div>
+
+        <!-- To do List-->
+         <p class="text-sm font-bold tracking-widest border-b border-[#164e63] pb-1 mb-1flex justify-between">
+         <span>To do List</span>
+         <!--Tolto perchè inutile <span class="text-[9px] text-[#e7eaf4] mt-1">Clicca per barrare</span>-->  
+         </p>
+         
+        <!--Div vuoto per Javascript--> 
+            <div id="todo-container" class="flex flex-col gap-1.5 flex-grow"></div>
+        </div>
+
+<!--Area dei giorni, occupa 12 colonne-->
+        <div class="col-span-9 grid grid-cols-7 gap-2">
+    
+            <!--Lunedi-->
+            <div class="border-r border-[#0d7377] flex flex-col">
+                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">MON</div>
                 <!--Questo div serve per le ore-->
                 <div id="colonna-0" class="flex-grow mt-2"></div>
             </div>
 
             <!--Colonna Martedì-->
-            <div class="border-r border-teal-100 flex flex-col">
-                <div class="bg-[#FFFAF0] text-center font-bold py-1 rounded">TUE</div>
+            <div class="border-r border-[#0d7377] flex flex-col">
+                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">TUE</div>
                 <div id="colonna-1" class="flex-grow mt-2"></div>
             </div>
 
             <!--Colonna Mercoledì-->
-            <div class="border-r border-teal-100 flex flex-col">
-                <div class="bg-[#FFFAF0] text-center font-bold py-1 rounded">WED</div>
+            <div class="border-r border-[#0d7377] flex flex-col">
+                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">WED</div>
                 <div id="colonna-2" class="flex-grow mt-2"></div>
             </div>       
             
             <!--Colonna Giovedì-->
-            <div class="border-r border-teal-100 flex flex-col">
-                <div class="bg-[#FFFAF0] text-center font-bold py-1 rounded">THU</div>
+            <div class="border-r border-[#0d7377] flex flex-col">
+                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">THU</div>
                 <div id="colonna-3" class="flex-grow mt-2"></div>
             </div>   
             
             <!--Colonna Venerdì-->
-            <div class="border-r border-teal-100 flex flex-col">
-                <div class="bg-[#FFFAF0] text-center font-bold py-1 rounded">FRI</div>
+            <div class="border-r border-[#0d7377] flex flex-col">
+                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">FRI</div>
                 <div id="colonna-4" class="flex-grow mt-2"></div>
             </div>
 
             <!--Colonna Sabato-->
-            <div class="border-r border-teal-100 flex flex-col">
-                <div class="bg-[#FFFAF0] text-center font-bold py-1 rounded">SAT</div>
+            <div class="border-r border-[#0d7377] flex flex-col">
+                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">SAT</div>
                 <div id="colonna-5" class="flex-grow mt-2"></div>
             </div>
             
             <!--Colonna Domenica-->
             <div class="flex flex-col">
-                <div class="bg-[#FFFAF0] text-center font-bold py-1 rounded">SUN</div>
+                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">SUN</div>
                 <div id="colonna-6" class="flex-grow mt-2"></div>
             </div>            
             
         </div>
+    </div>
 
-    <!-- Inizio lo script JS-->    
+
+    <!--Sezione in basso( Important, notes, habits)-->
+    <div class="grid grid-cols-12 gap-4 mt4 p-1">
+
+        <!-- Sezione: Important-->
+        <div class="col-span-3 bg-[#232C4D] p-4 rounded-xl shadow-lg text-[#e7eaf4] flex flex-col">
+          <h2 class="text-[12px] font-bold text-[#e7eaf4] tracking-widest text-center mb-2">Important</h2> 
+          <textarea class="w-full flex-grow resize-none outline-none text-xs bg-transparent" placeholder="Obbiettivi..."></textarea>   
+        </div>  
+
+        <!--Notes-->
+        <div class="col-span-4 bg-[#232C4D] p-4 rounded-xl shadow-lg text-[#e7eaf4] flex flex-col relative">
+            <h2 class="text-[12px] font-bold text-[#e7eaf4] tracking-widest text-center mb-2">Notes</h2>
+            <textarea class="w-full flex-grow resize-none outline-none text-xs bg-transparent" placeholder="Devo ricordarmi che..."></textarea>
+            <!--Sfondo Notes-->
+                <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#565D65 1px, transparent 1.5px); background-size: 12px 12px;"></div>
+        </div>
+
+        <!--Habit Tracker-->
+        <div class="col-span-5 bg-[#232C4D] p-4 rounded-xl shadow-lg text-[#e7eaf4]">
+            <h2 class="text-[-12px] font-bold text-[#e7eaf4] trecking-widest text-center mb-2">Habit tracker</h2>
+
+            <!--Intestazione con iniziali dei nomi della settimana-->
+            <div class="flex text-[9px] font-bold text-[#e7eaf4] border-b border-[#6F77A6] pb-1 mb-1">
+                <div class="w-1/2">HABIT</div>
+                <div class="w-1/2 flex justify-between px-1">
+                    <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                </div>
+            </div>
+
+            <!--Le abitudini-->
+            <!--Riga 0-->
+            <div class="flex justify-between items-center text-[10px] mb-1.5 border-b border-dashed border-[#6F77A6] pb-1">
+                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent"> 
+                <div class="w-1/2 flex justify-between px-1">
+                    <input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle">
+                </div>
+            </div>
+
+            <!--Riga 1-->
+            <div class="flex justify-between items-center text-[10px] mb-1.5 border-b border-dashed border-[#6F77A6] pb-1">
+                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent"> 
+                <div class="w-1/2 flex justify-between px-1">
+                    <input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle">
+                </div>
+            </div>     
+            
+            <!--Riga 2-->
+            <div class="flex justify-between items-center text-[10px] mb-1.5 border-b border-dashed border-[#6F77A6] pb-1">
+                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent"> 
+                <div class="w-1/2 flex justify-between px-1">
+                    <input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle">
+                </div>
+            </div>            
+           
+            <!--Riga 3-->
+            <div class="flex justify-between items-center text-[10px] mb-1.5 border-b border-dashed border-[#6F77A6] pb-1">
+                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent"> 
+                <div class="w-1/2 flex justify-between px-1">
+                    <input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle">
+                </div>
+            </div>            
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT - Il motore-->    
+    <script>
+        // Theme toggle
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            this.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+
+        // Recupera tema salvato
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            document.getElementById('theme-toggle').textContent = '🌙';
+        }
+    </script>
+    <script>
+        document.getElementById('toggle-sidebar').addEventListener('click', function() {
+            let sidebar = document.querySelector('.col-span-2');
+            sidebar.classList.toggle('hidden');
+        });
+    </script>
+
+    <script>
+        // La to do list
+        let contenitoreToDo = document.getElementById('todo-container')
+
+        for (let j = 0; j < 15; j++) {
+            let rigaToDo = `
+                <div class="flex items-center gap-2 border-b border-dashed border-[#6F77A6] pb-1" style="border-bottom-width: 0.3px;">
+                    <input type="checkbox" class="check-circle flex-shrink-0">
+                    <div contenteditable="true" class="w-full texxt-xs outline-none bg-transparent"></div>
+                </div>
+                    `;
+
+                contenitoreToDo.insertAdjacentHTML('beforeend',rigaToDo);
+                }
+    </script>
      <script>
         // 1.Definiamo l'ora d'inizio della giornata
         let oraInizioGiornata = 5;
 
         //2. Richiamo le colonne html create prima dei giorni
-        let colonnaLunedì = document.getElementById('colonna-0');
-        let colonnaMartedì = document.getElementById('colonna-1');
-        let colonnaMercoledì = document.getElementById('colonna-2');
-        let colonnaGiovedì = document.getElementById('colonna-3');
-        let colonnaVenerdì = document.getElementById('colonna-4');
+        let colonnaLunedi = document.getElementById('colonna-0');
+        let colonnaMartedi = document.getElementById('colonna-1');
+        let colonnaMercoledi = document.getElementById('colonna-2');
+        let colonnaGiovedi = document.getElementById('colonna-3');
+        let colonnaVenerdi = document.getElementById('colonna-4');
         let colonnaSabato = document.getElementById('colonna-5');
         let colonnaDomenica = document.getElementById('colonna-6');
 
         //3. Creo un ciclo che si ripete 17 volte (le ore della giornata attive)
-        for (let i =0; i < 17; i++) {
+        for (let i =0; i < 18; i++) {
             
             let oraCalcolata = oraInizioGiornata +i;
             let etichettaOra = oraCalcolata + ":00";
 
             // Creo un pezzo di html per ogni songola riga
             let rigaHtml = `
-            <div class="flex items-center gap-2 border-b border-teal-50 py-1">
-                <span class="text-xs font-bold text-teal-600 w-8 text-right">${etichettaOra}</span>
-                <div contenteditable="true" class="w-full text-sm outline-none bg-transparent"></div>
+            <div class="flex items-start gap-2 border-b border-[#32416B] py-2">
+                <span class="text-ss font-slim text-[#6F77A6] w-2 text-right scale-75">${etichettaOra}</span>
+                <div contenteditable="true" class="w-full text-sm text-[#d6d6d7] outline-none bg-transparent flex-grow" style="word-wrap: break-word; white-space: pre-wrap overflow-y: auto;"></div>
             </div>    
             ` ;
 
             //Iniettiamo questa riga dentro le nostre colonne
-            colonnaLunedì.insertAdjacentHTML('beforeend', rigaHtml);
-            colonnaMartedì.insertAdjacentHTML('beforeend', rigaHtml);
-            colonnaMercoledì.insertAdjacentHTML('beforeend', rigaHtml);
-            colonnaGiovedì.insertAdjacentHTML('beforeend', rigaHtml);
-            colonnaVenerdì.insertAdjacentHTML('beforeend', rigaHtml);
+            colonnaLunedi.insertAdjacentHTML('beforeend', rigaHtml);
+            colonnaMartedi.insertAdjacentHTML('beforeend', rigaHtml);
+            colonnaMercoledi.insertAdjacentHTML('beforeend', rigaHtml);
+            colonnaGiovedi.insertAdjacentHTML('beforeend', rigaHtml);
+            colonnaVenerdi.insertAdjacentHTML('beforeend', rigaHtml);
             colonnaSabato.insertAdjacentHTML('beforeend', rigaHtml);
             colonnaDomenica.insertAdjacentHTML('beforeend', rigaHtml);
 
