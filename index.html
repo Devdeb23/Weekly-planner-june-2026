@@ -2,349 +2,347 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <h1 class="text-3xl font-bold mb-6">Planner Settimanale</h1>
-    <button id="theme-toggle" style="position: absolute; top: 32px; right: 32px; background: none; border: none; font-size:24px; cursor: pointer;">☀️</button>
+    <title>Planner Settimanale</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!--Importo font:-->
-    <!--Raleway-->
+    <!-- Font Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <!--Elms Sans-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-        <style>
-            /* DARK MODE - Moderno e Frizzante */
-            body {
-                font-family: 'Elms Sans';
-                background: linear-gradient(135deg, #0f0f1e 0%, #1a1133 50%, #0d0d1f 100%);
-                color: #ffffff; 
-            }
+    <style>
+        /* ==================== DARK MODE ==================== */
+        body {
+            font-family: 'Elms Sans';
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1133 50%, #0d0d1f 100%);
+            color: #ffffff;
+        }
 
-            /* Checkbox Dark Mode */
-            .check-circle {
-                appearance: none;
-                width: 14px;
-                height: 14px;
-                border: 2px solid #00d9ff;
-                border-radius: 50%;
-                outline: none;
-                cursor: pointer;
-                background-color: rgba(0, 217, 255, 0.15);
-                transition: all 0.3s ease;
-            }
+        /* Checkbox Dark Mode */
+        .check-circle {
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border: 2px solid #00d9ff;
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+            background-color: rgba(0, 217, 255, 0.15);
+            transition: all 0.3s ease;
+        }
 
-            .check-circle:checked {
-                background-color: #ff006e;
-                border-color: #00d9ff;
-                box-shadow: 0 0 8px #ff006e;
-            }
+        .check-circle:checked {
+            background-color: #ff006e;
+            border-color: #00d9ff;
+            box-shadow: 0 0 8px #ff006e;
+        }
 
-            /* Placeholder color Dark Mode */
-            input::placeholder,
-            textarea::placeholder {
-                color: #00d9ff !important;
-                opacity: 0.7 !important;
-            }
+        /* Placeholder Dark Mode */
+        input::placeholder,
+        textarea::placeholder {
+            color: #00d9ff !important;
+            opacity: 0.7 !important;
+        }
 
-            /* Testo generale Dark Mode */
-            h1, h2, p, span {
-                color: #ffffff !important;
-            }
+        /* Testo generale Dark Mode */
+        h1,
+        h2,
+        p,
+        span {
+            color: #ffffff !important;
+        }
 
-            /* Input/Textarea Dark Mode */
-            input,
-            textarea {
-                color: #ffffff !important;
-                background-color: rgba(0, 217, 255, 0.08) !important;
-                border-color: #00d9ff !important;
-            }
+        /* Input/Textarea Dark Mode */
+        input,
+        textarea {
+            color: #ffffff !important;
+            background-color: rgba(0, 217, 255, 0.08) !important;
+            border-color: #00d9ff !important;
+        }
 
-            /* Sezione Important Dark Mode - Arancione vivace */
-            div.col-span-3 {
-                background: linear-gradient(135deg, rgba(255, 159, 67, 0.15) 0%, rgba(255, 200, 100, 0.1) 100%) !important;
-                border-left: 4px solid #ff9f43 !important;
-            }
+        /* Sezione Important Dark Mode - Arancione */
+        div.col-span-3 {
+            background: linear-gradient(135deg, rgba(255, 159, 67, 0.15) 0%, rgba(255, 200, 100, 0.1) 100%) !important;
+            border-left: 4px solid #ff9f43 !important;
+        }
 
-            div.col-span-3 textarea {
-                color: #ffffff !important;
-            }
+        div.col-span-3 textarea {
+            color: #ffffff !important;
+        }
 
-            /* Sezione Notes Dark Mode - Verde lime vivace */
-            div.col-span-4 {
-                background: linear-gradient(135deg, rgba(0, 217, 109, 0.15) 0%, rgba(100, 230, 150, 0.1) 100%) !important;
-                border-left: 4px solid #00d96d !important;
-            }
+        /* Sezione Notes Dark Mode - Verde lime */
+        div.col-span-4 {
+            background: linear-gradient(135deg, rgba(0, 217, 109, 0.15) 0%, rgba(100, 230, 150, 0.1) 100%) !important;
+            border-left: 4px solid #00d96d !important;
+        }
 
-            div.col-span-4 textarea {
-                color: #ffffff !important;
-            }
+        div.col-span-4 textarea {
+            color: #ffffff !important;
+        }
 
-            /* Sezione Habits Dark Mode - Viola vivace */
-            div.col-span-5 {
-                background: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(196, 164, 255, 0.1) 100%) !important;
-                border-left: 4px solid #a78bfa !important;
-            }
+        /* Sezione Habits Dark Mode - Viola */
+        div.col-span-5 {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(196, 164, 255, 0.1) 100%) !important;
+            border-left: 4px solid #a78bfa !important;
+        }
 
-            div.col-span-5 textarea {
-                color: #ffffff !important;
-            }
+        div.col-span-5 textarea {
+            color: #ffffff !important;
+        }
 
-            /* Input/Textarea trasparenti nelle sezioni Important, Notes, Habits Dark Mode */
-            div.col-span-3 input,
-            div.col-span-3 textarea,
-            div.col-span-4 input,
-            div.col-span-4 textarea,
-            div.col-span-5 input,
-            div.col-span-5 textarea {
-                background-color: transparent !important;
-                border-color: transparent !important;
-            }
+        /* Input trasparenti nelle sezioni Bottom */
+        div.col-span-3 input,
+        div.col-span-3 textarea,
+        div.col-span-4 input,
+        div.col-span-4 textarea,
+        div.col-span-5 input,
+        div.col-span-5 textarea {
+            background-color: transparent !important;
+            border-color: transparent !important;
+        }
 
-            .sidebar {
-                transition: transform 0.3s ease, width 0.3s ease;
-                transform: translateX(0);
-            }    
+        /* Sidebar */
+        .sidebar {
+            transition: transform 0.3s ease, width 0.3s ease;
+            transform: translateX(0);
+        }
 
-            .sidebar.hidden {
-                transform: translateX(-100%);
-            }
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
 
-            .toggle-btn {
-                position: fixed;
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 35px;
-                height: 70px;
-                background: linear-gradient(90deg, #ff006e, #00d9ff);
-                border-radius: 0 12px 12px 0;
-                cursor: pointer;
-                z-index: 101;
-                color: white;
-                font-size: 20px;
-                font-weight: bold;
-                transition: all 0.3s ease; 
-            }          
+        /* Toggle Button */
+        .toggle-btn {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 70px;
+            background: linear-gradient(90deg, #ff006e, #00d9ff);
+            border-radius: 0 12px 12px 0;
+            cursor: pointer;
+            z-index: 101;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
 
-            .toggle-btn:hover {
-                width: 40px;
-                box-shadow: 0 0 15px rgba(255, 0, 110, 0.5);
-            }
+        .toggle-btn:hover {
+            width: 40px;
+            box-shadow: 0 0 15px rgba(255, 0, 110, 0.5);
+        }
 
-            /* LIGHT MODE - Colorato e Moderno */
-            body.light-mode {
-                background: linear-gradient(135deg, #f8f6ff 0%, #fff5f2 100%) !important;
-                color: #1a1a1a !important;
-            }
+        /* LIGHT MODE */
+        body.light-mode {
+            background: linear-gradient(135deg, #f8f6ff 0%, #fff5f2 100%) !important;
+            color: #1a1a1a !important;
+        }
 
-            body.light-mode * {
-                color: #1a1a1a !important;
-            }
+        body.light-mode * {
+            color: #1a1a1a !important;
+        }
 
-            body.light-mode h1, 
-            body.light-mode h2 {
-                color: #000000 !important;
-            }
+        body.light-mode h1,
+        body.light-mode h2 {
+            color: #000000 !important;
+        }
 
-            body.light-mode p, 
-            body.light-mode span {
-                color: #1a1a1a !important;
-            }
+        body.light-mode p,
+        body.light-mode span {
+            color: #1a1a1a !important;
+        }
 
-            /* Input e Textarea Light Mode */
-            body.light-mode input,
-            body.light-mode textarea {
-                color: #1a1a1a !important;
-                background-color: rgba(255, 255, 255, 0.9) !important;
-                border-color: #ff006e !important;
-            }
+        /* Input Light Mode */
+        body.light-mode input,
+        body.light-mode textarea {
+            color: #1a1a1a !important;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            border-color: #ff006e !important;
+        }
 
-            body.light-mode input::placeholder,
-            body.light-mode textarea::placeholder {
-                color: #999999 !important;
-                opacity: 1 !important;
-            }
+        body.light-mode input::placeholder,
+        body.light-mode textarea::placeholder {
+            color: #999999 !important;
+            opacity: 1 !important;
+        }
 
-            /* Checkbox Light Mode */
-            body.light-mode .check-circle {
-                border: 2px solid #ff006e !important;
-                background-color: rgba(255, 0, 110, 0.1) !important;
-            }
+        /* Checkbox Light Mode */
+        body.light-mode .check-circle {
+            border: 2px solid #ff006e !important;
+            background-color: rgba(255, 0, 110, 0.1) !important;
+        }
 
-            body.light-mode .check-circle:checked {
-                background-color: #ff006e !important;
-                border-color: #ff006e !important;
-            }
+        body.light-mode .check-circle:checked {
+            background-color: #ff006e !important;
+            border-color: #ff006e !important;
+        }
 
-            /* Grid principale Light Mode */
-            body.light-mode div[class*="bg-[#1a3a4a]"] {
-                background-color: #ffffff !important;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
-            }
+        /* Grid principale Light Mode */
+        body.light-mode div[class*="bg-[#1a3a4a]"] {
+            background-color: #ffffff !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+        }
 
-            /* Sezione Important - Arancione vivace */
-            body.light-mode div.col-span-3 {
-                background: linear-gradient(135deg, #fff8f0 0%, #ffe8d6 100%) !important;
-                border-left: 4px solid #ff9f43 !important;
-                color: #1a1a1a !important;
-            }
+        /* Sezione Important Light Mode - Arancione */
+        body.light-mode div.col-span-3 {
+            background: linear-gradient(135deg, #fff8f0 0%, #ffe8d6 100%) !important;
+            border-left: 4px solid #ff9f43 !important;
+            color: #1a1a1a !important;
+        }
 
-            body.light-mode div.col-span-3 textarea {
-                color: #1a1a1a !important;
-            }
+        body.light-mode div.col-span-3 textarea {
+            color: #1a1a1a !important;
+        }
 
-            /* Sezione Notes - Verde lime vivace */
-            body.light-mode div.col-span-4 {
-                background: linear-gradient(135deg, #f0fff4 0%, #d6ffe8 100%) !important;
-                border-left: 4px solid #00d96d !important;
-                color: #1a1a1a !important;
-            }
+        /* Sezione Notes Light Mode - Verde lime */
+        body.light-mode div.col-span-4 {
+            background: linear-gradient(135deg, #f0fff4 0%, #d6ffe8 100%) !important;
+            border-left: 4px solid #00d96d !important;
+            color: #1a1a1a !important;
+        }
 
-            body.light-mode div.col-span-4 textarea {
-                color: #1a1a1a !important;
-            }
+        body.light-mode div.col-span-4 textarea {
+            color: #1a1a1a !important;
+        }
 
-            /* Sezione Habits - Viola vivace */
-            body.light-mode div.col-span-5 {
-                background: linear-gradient(135deg, #faf5ff 0%, #ede9fe 100%) !important;
-                border-left: 4px solid #a78bfa !important;
-                color: #1a1a1a !important;
-            }
+        /* Sezione Habits Light Mode - Viola */
+        body.light-mode div.col-span-5 {
+            background: linear-gradient(135deg, #faf5ff 0%, #ede9fe 100%) !important;
+            border-left: 4px solid #a78bfa !important;
+            color: #1a1a1a !important;
+        }
 
-            /* Input/Textarea trasparenti nelle sezioni Important, Notes, Habits */
-            body.light-mode div.col-span-3 input,
-            body.light-mode div.col-span-3 textarea,
-            body.light-mode div.col-span-4 input,
-            body.light-mode div.col-span-4 textarea,
-            body.light-mode div.col-span-5 input,
-            body.light-mode div.col-span-5 textarea {
-                background-color: transparent !important;
-                border-color: transparent !important;
-            }
+        /* Input trasparenti Light Mode */
+        body.light-mode div.col-span-3 input,
+        body.light-mode div.col-span-3 textarea,
+        body.light-mode div.col-span-4 input,
+        body.light-mode div.col-span-4 textarea,
+        body.light-mode div.col-span-5 input,
+        body.light-mode div.col-span-5 textarea {
+            background-color: transparent !important;
+            border-color: transparent !important;
+        }
 
-            /* Bordi Light Mode */
-            body.light-mode div[class*="border-[#0d7377]"],
-            body.light-mode div[class*="border-[#164e63]"],
-            body.light-mode div[class*="border-[#6F77A6]"],
-            body.light-mode div[class*="border-[#32416B]"] {
-                border-color: #e0e0e0 !important;
-            }
+        /* Bordi Light Mode */
+        body.light-mode div[class*="border-[#0d7377]"],
+        body.light-mode div[class*="border-[#164e63]"],
+        body.light-mode div[class*="border-[#6F77A6]"],
+        body.light-mode div[class*="border-[#32416B]"] {
+            border-color: #e0e0e0 !important;
+        }
 
-            /* Bottone toggle Light Mode */
-            body.light-mode .toggle-btn {
-                background: linear-gradient(90deg, #ff006e, #ffd319) !important;
-                color: white !important;
-            }
+        /* Toggle Button Light Mode */
+        body.light-mode .toggle-btn {
+            background: linear-gradient(90deg, #ff006e, #ffd319) !important;
+            color: white !important;
+        }
 
-            body.light-mode .toggle-btn:hover {
-                box-shadow: 0 0 15px rgba(255, 0, 110, 0.3) !important;
-            }
-        </style>
-    </head>
-    <body class="p-8"> <!--Titolo del planner con classi Tailwind per dimensione del testo, grassetto e margine inferiore-->
+        body.light-mode .toggle-btn:hover {
+            box-shadow: 0 0 15px rgba(255, 0, 110, 0.3) !important;
+        }
+    </style>
+</head>
 
-        <button class="toggle-btn" id="toggle-sidebar">☰</button>
+<body class="p-8">
+    <!-- Header -->
+    <h1 class="text-3xl font-bold mb-6">Planner Settimanale</h1>
+    <button id="theme-toggle" style="position: absolute; top: 32px; right: 32px; background: none; border: none; font-size: 24px; cursor: pointer;">☀️</button>
 
+    <!-- Sidebar Toggle Button -->
+    <button class="toggle-btn" id="toggle-sidebar">☰</button>
 
-        <!--CSS Grid: Imposto 12 colonne per suddividere-->
-        <div class="grid grid-cols-11 gap-2 bg-[#1a3a4a] p-4 rounded-xl shadow-lg min-h-[500px] text-white">
+    <!-- Main Grid -->
+    <div class="grid grid-cols-11 gap-2 bg-[#1a3a4a] p-4 rounded-xl shadow-lg min-h-[500px] text-white">
 
-            <!--Sidebar della to-do list e mese -->
-
-            <div class="col-span-2 border-r border-[#0d7377] pr-4 flex flex-col sidebar">
-
-        <!-- Indico mese e settimana-->
-             <div class="mb-4">
+        <!-- Sidebar -->
+        <div class="col-span-2 border-r border-[#0d7377] pr-4 flex flex-col sidebar">
+            <!-- Week Info -->
+            <div class="mb-4">
                 <p class="text-xs font-slim text-white">Week of</p>
-                <input type="text" placeholder="ex.15/20 June 2026" class="w-full border-b text-right  border-[#164e63] outline-none text-sm bg-transparent pb-1 scale-75">
+                <input type="text" placeholder="ex.15/20 June 2026" class="w-full border-b text-right border-[#164e63] outline-none text-sm bg-transparent pb-1 scale-75">
             </div>
 
-        <!-- To do List-->
-         <p class="text-sm font-bold tracking-widest border-b border-[#164e63] pb-1 mb-1flex justify-between">
-         <span>To do List</span>
-         <!--Tolto perchè inutile <span class="text-[9px] text-[#e7eaf4] mt-1">Clicca per barrare</span>-->  
-         </p>
-         
-        <!--Div vuoto per Javascript--> 
+            <!-- To Do List Header -->
+            <p class="text-sm font-bold tracking-widest border-b border-[#164e63] pb-1 mb-1 flex justify-between">
+                <span>To do List</span>
+            </p>
+
+            <!-- To Do Container -->
             <div id="todo-container" class="flex flex-col gap-1.5 flex-grow"></div>
         </div>
 
-<!--Area dei giorni, occupa 12 colonne-->
+        <!-- Schedule Grid -->
         <div class="col-span-9 grid grid-cols-7 gap-2">
-    
-            <!--Lunedi-->
+
+            <!-- Monday -->
             <div class="border-r border-[#0d7377] flex flex-col">
                 <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">MON</div>
-                <!--Questo div serve per le ore-->
                 <div id="colonna-0" class="flex-grow mt-2"></div>
             </div>
 
-            <!--Colonna Martedì-->
+            <!-- Tuesday -->
             <div class="border-r border-[#0d7377] flex flex-col">
                 <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">TUE</div>
                 <div id="colonna-1" class="flex-grow mt-2"></div>
             </div>
 
-            <!--Colonna Mercoledì-->
+            <!-- Wednesday -->
             <div class="border-r border-[#0d7377] flex flex-col">
                 <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">WED</div>
                 <div id="colonna-2" class="flex-grow mt-2"></div>
-            </div>       
-            
-            <!--Colonna Giovedì-->
+            </div>
+
+            <!-- Thursday -->
             <div class="border-r border-[#0d7377] flex flex-col">
                 <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">THU</div>
                 <div id="colonna-3" class="flex-grow mt-2"></div>
-            </div>   
-            
-            <!--Colonna Venerdì-->
+            </div>
+
+            <!-- Friday -->
             <div class="border-r border-[#0d7377] flex flex-col">
                 <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">FRI</div>
                 <div id="colonna-4" class="flex-grow mt-2"></div>
             </div>
 
-            <!--Colonna Sabato-->
+            <!-- Saturday -->
             <div class="border-r border-[#0d7377] flex flex-col">
                 <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">SAT</div>
                 <div id="colonna-5" class="flex-grow mt-2"></div>
             </div>
-            
-            <!--Colonna Domenica-->
+
+            <!-- Sunday -->
             <div class="flex flex-col">
                 <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">SUN</div>
                 <div id="colonna-6" class="flex-grow mt-2"></div>
-            </div>            
-            
+            </div>
         </div>
     </div>
 
+    <!-- Bottom Sections -->
+    <div class="grid grid-cols-12 gap-4 mt-4 p-1">
 
-    <!--Sezione in basso( Important, notes, habits)-->
-    <div class="grid grid-cols-12 gap-4 mt4 p-1">
-
-        <!-- Sezione: Important-->
+        <!-- Important Section -->
         <div class="col-span-3 bg-[#232C4D] p-4 rounded-xl shadow-lg text-[#e7eaf4] flex flex-col">
-          <h2 class="text-[12px] font-bold text-[#e7eaf4] tracking-widest text-center mb-2">IMPORTANT</h2> 
-          <textarea class="w-full flex-grow resize-none outline-none text-xs bg-transparent" placeholder="Obbiettivi..."></textarea>   
-        </div>  
+            <h2 class="text-[12px] font-bold text-[#e7eaf4] tracking-widest text-center mb-2">IMPORTANT</h2>
+            <textarea class="w-full flex-grow resize-none outline-none text-xs bg-transparent" placeholder="Obbiettivi..."></textarea>
+        </div>
 
-        <!--Notes-->
+        <!-- Notes Section -->
         <div class="col-span-4 bg-[#232C4D] p-4 rounded-xl shadow-lg text-[#e7eaf4] flex flex-col relative">
             <h2 class="text-[12px] font-bold text-[#e7eaf4] tracking-widest text-center mb-2">NOTES</h2>
             <textarea class="w-full flex-grow resize-none outline-none text-xs bg-transparent" placeholder="Devo ricordarmi che..."></textarea>
-            <!--Sfondo Notes-->
-                <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#565D65 1px, transparent 1.5px); background-size: 12px 12px;"></div>
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#565D65 1px, transparent 1.5px); background-size: 12px 12px;"></div>
         </div>
 
-        <!--Habit Tracker-->
+        <!-- Habit Tracker Section -->
         <div class="col-span-5 bg-[#232C4D] p-4 rounded-xl shadow-lg text-[#e7eaf4]">
-            <h2 class="text-[-12px] font-bold text-[#e7eaf4] trecking-widest text-center mb-2">HABIT TRACKER</h2>
+            <h2 class="text-[12px] font-bold text-[#e7eaf4] tracking-widest text-center mb-2">HABIT TRACKER</h2>
 
-            <!--Intestazione con iniziali dei nomi della settimana-->
+            <!-- Header -->
             <div class="flex text-[9px] font-bold text-[#e7eaf4] border-b border-[#6F77A6] pb-1 mb-1">
                 <div class="w-1/2">HABIT</div>
                 <div class="w-1/2 flex justify-between px-1">
@@ -352,117 +350,75 @@
                 </div>
             </div>
 
-            <!--Le abitudini-->
-            <!--Riga 0-->
+            <!-- Row 0 -->
             <div class="flex justify-between items-center text-[10px] mb-1.5 border-b border-dashed border-[#6F77A6] pb-1">
-                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent"> 
+                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent">
                 <div class="w-1/2 flex justify-between px-1">
-                    <input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
                 </div>
             </div>
 
-            <!--Riga 1-->
+            <!-- Row 1 -->
             <div class="flex justify-between items-center text-[10px] mb-1.5 border-b border-dashed border-[#6F77A6] pb-1">
-                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent"> 
+                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent">
                 <div class="w-1/2 flex justify-between px-1">
-                    <input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
                 </div>
-            </div>     
-            
-            <!--Riga 2-->
+            </div>
+
+            <!-- Row 2 -->
             <div class="flex justify-between items-center text-[10px] mb-1.5 border-b border-dashed border-[#6F77A6] pb-1">
-                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent"> 
+                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent">
                 <div class="w-1/2 flex justify-between px-1">
-                    <input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
                 </div>
-            </div>            
-           
-            <!--Riga 3-->
+            </div>
+
+            <!-- Row 3 -->
             <div class="flex justify-between items-center text-[10px] mb-1.5 border-b border-dashed border-[#6F77A6] pb-1">
-                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent"> 
+                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent">
                 <div class="w-1/2 flex justify-between px-1">
-                    <input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle"><input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
+                    <input type="checkbox" class="check-circle">
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 
+    <!-- JavaScript -->
+<script>
+    (function() {
+        'use strict';
 
-    <!-- JAVASCRIPT - Il motore-->    
-    <script>
-        // Theme toggle
-        document.getElementById('theme-toggle').addEventListener('click', function() {
-            document.body.classList.toggle('light-mode');
-            this.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
-            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        });
-
-        // Recupera tema salvato
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-mode');
-            document.getElementById('theme-toggle').textContent = '🌙';
+        //======DOM SECTION=====
+        const DOM ={
+            THEMEtOGGLE
         }
-    </script>
-    <script>
-        document.getElementById('toggle-sidebar').addEventListener('click', function() {
-            let sidebar = document.querySelector('.col-span-2');
-            sidebar.classList.toggle('hidden');
-        });
-    </script>
+    }
+</script>
+</body>
 
-    <script>
-        // La to do list
-        let contenitoreToDo = document.getElementById('todo-container')
-
-        for (let j = 0; j < 15; j++) {
-            let rigaToDo = `
-                <div class="flex items-center gap-2 border-b border-dashed border-[#6F77A6] pb-1" style="border-bottom-width: 0.3px;">
-                    <input type="checkbox" class="check-circle flex-shrink-0">
-                    <div contenteditable="true" class="w-full texxt-xs outline-none bg-transparent"></div>
-                </div>
-                    `;
-
-                contenitoreToDo.insertAdjacentHTML('beforeend',rigaToDo);
-                }
-    </script>
-     <script>
-        // 1.Definiamo l'ora d'inizio della giornata
-        let oraInizioGiornata = 5;
-
-        //2. Richiamo le colonne html create prima dei giorni
-        let colonnaLunedi = document.getElementById('colonna-0');
-        let colonnaMartedi = document.getElementById('colonna-1');
-        let colonnaMercoledi = document.getElementById('colonna-2');
-        let colonnaGiovedi = document.getElementById('colonna-3');
-        let colonnaVenerdi = document.getElementById('colonna-4');
-        let colonnaSabato = document.getElementById('colonna-5');
-        let colonnaDomenica = document.getElementById('colonna-6');
-
-        //3. Creo un ciclo che si ripete 17 volte (le ore della giornata attive)
-        for (let i =0; i < 18; i++) {
-            
-            let oraCalcolata = oraInizioGiornata +i;
-            let etichettaOra = oraCalcolata + ":00";
-
-            // Creo un pezzo di html per ogni songola riga
-            let rigaHtml = `
-            <div class="flex items-start gap-2 border-b border-[#32416B] py-2">
-                <span class="text-ss font-slim text-[#6F77A6] w-2 text-right scale-75">${etichettaOra}</span>
-                <div contenteditable="true" class="w-full text-sm text-[#d6d6d7] outline-none bg-transparent flex-grow" style="word-wrap: break-word; white-space: pre-wrap overflow-y: auto;"></div>
-            </div>    
-            ` ;
-
-            //Iniettiamo questa riga dentro le nostre colonne
-            colonnaLunedi.insertAdjacentHTML('beforeend', rigaHtml);
-            colonnaMartedi.insertAdjacentHTML('beforeend', rigaHtml);
-            colonnaMercoledi.insertAdjacentHTML('beforeend', rigaHtml);
-            colonnaGiovedi.insertAdjacentHTML('beforeend', rigaHtml);
-            colonnaVenerdi.insertAdjacentHTML('beforeend', rigaHtml);
-            colonnaSabato.insertAdjacentHTML('beforeend', rigaHtml);
-            colonnaDomenica.insertAdjacentHTML('beforeend', rigaHtml);
-
-        }
-     </script>
-    </body>
-    </html>
-
+</html>
