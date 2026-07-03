@@ -8,7 +8,6 @@
     <!-- Font Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <style>
@@ -247,177 +246,20 @@
 </head>
 
 <body class="p-8">
-    <!-- Header -->
-    <h1 class="text-3xl font-bold mb-6">Planner Settimanale</h1>
-    <button id="theme-toggle" style="position: absolute; top: 32px; right: 32px; background: none; border: none; font-size: 24px; cursor: pointer;">☀️</button>
-
-    <!-- Sidebar Toggle Button -->
-    <button class="toggle-btn" id="toggle-sidebar">☰</button>
-
-    <!-- Main Grid -->
-    <div class="grid grid-cols-11 gap-2 bg-[#1a3a4a] p-4 rounded-xl shadow-lg min-h-[500px] text-white">
-
-        <!-- Sidebar -->
-        <div class="col-span-2 border-r border-[#0d7377] pr-4 flex flex-col sidebar">
-            <!-- Week Info -->
-            <div class="mb-4">
-                <p class="text-xs font-slim text-white">Week of</p>
-                <input type="text" placeholder="ex.15/20 June 2026" class="w-full border-b text-right border-[#164e63] outline-none text-sm bg-transparent pb-1 scale-75">
-            </div>
-
-            <!-- To Do List Header -->
-            <p class="text-sm font-bold tracking-widest border-b border-[#164e63] pb-1 mb-1 flex justify-between">
-                <span>To do List</span>
-            </p>
-
-            <!-- To Do Container -->
-            <div id="todo-container" class="flex flex-col gap-1.5 flex-grow"></div>
-        </div>
-
-        <!-- Schedule Grid -->
-        <div class="col-span-9 grid grid-cols-7 gap-2">
-
-            <!-- Monday -->
-            <div class="border-r border-[#0d7377] flex flex-col">
-                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">MON</div>
-                <div id="colonna-0" class="flex-grow mt-2"></div>
-            </div>
-
-            <!-- Tuesday -->
-            <div class="border-r border-[#0d7377] flex flex-col">
-                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">TUE</div>
-                <div id="colonna-1" class="flex-grow mt-2"></div>
-            </div>
-
-            <!-- Wednesday -->
-            <div class="border-r border-[#0d7377] flex flex-col">
-                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">WED</div>
-                <div id="colonna-2" class="flex-grow mt-2"></div>
-            </div>
-
-            <!-- Thursday -->
-            <div class="border-r border-[#0d7377] flex flex-col">
-                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">THU</div>
-                <div id="colonna-3" class="flex-grow mt-2"></div>
-            </div>
-
-            <!-- Friday -->
-            <div class="border-r border-[#0d7377] flex flex-col">
-                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">FRI</div>
-                <div id="colonna-4" class="flex-grow mt-2"></div>
-            </div>
-
-            <!-- Saturday -->
-            <div class="border-r border-[#0d7377] flex flex-col">
-                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">SAT</div>
-                <div id="colonna-5" class="flex-grow mt-2"></div>
-            </div>
-
-            <!-- Sunday -->
-            <div class="flex flex-col">
-                <div class="bg-[#06b6d4] text-center font-bold py-1 rounded">SUN</div>
-                <div id="colonna-6" class="flex-grow mt-2"></div>
-            </div>
-        </div>
+    <div class="page-wrapper"> <!--tutto il contenuto della pagina per le linguette-->
+        <!--Linguette laterali-->
+        <nav class="tab-rail">
+            <a href="index.html">🗓️ Calendario</a>
+            <a href="tasks.html">📌 To do</a>
+            <a href="notes.html">📝 Notes</a>
+        </nav>
+        <main class="page-content">
+            <!--Contenuto della pagina-->
+        </main>  
     </div>
-
-    <!-- Bottom Sections -->
-    <div class="grid grid-cols-12 gap-4 mt-4 p-1">
-
-        <!-- Important Section -->
-        <div class="col-span-3 bg-[#232C4D] p-4 rounded-xl shadow-lg text-[#e7eaf4] flex flex-col">
-            <h2 class="text-[12px] font-bold text-[#e7eaf4] tracking-widest text-center mb-2">IMPORTANT</h2>
-            <textarea class="w-full flex-grow resize-none outline-none text-xs bg-transparent" placeholder="Obbiettivi..."></textarea>
-        </div>
-
-        <!-- Notes Section -->
-        <div class="col-span-4 bg-[#232C4D] p-4 rounded-xl shadow-lg text-[#e7eaf4] flex flex-col relative">
-            <h2 class="text-[12px] font-bold text-[#e7eaf4] tracking-widest text-center mb-2">NOTES</h2>
-            <textarea class="w-full flex-grow resize-none outline-none text-xs bg-transparent" placeholder="Devo ricordarmi che..."></textarea>
-            <!-- Background Pattern -->
-            <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#565D65 1px, transparent 1.5px); background-size: 12px 12px;"></div>
-        </div>
-
-        <!-- Habit Tracker Section -->
-        <div class="col-span-5 bg-[#232C4D] p-4 rounded-xl shadow-lg text-[#e7eaf4]">
-            <h2 class="text-[12px] font-bold text-[#e7eaf4] tracking-widest text-center mb-2">HABIT TRACKER</h2>
-
-            <!-- Header -->
-            <div class="flex text-[9px] font-bold text-[#e7eaf4] border-b border-[#6F77A6] pb-1 mb-1">
-                <div class="w-1/2">HABIT</div>
-                <div class="w-1/2 flex justify-between px-1">
-                    <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
-                </div>
-            </div>
-
-            <!-- Row 0 -->
-            <div class="flex justify-between items-center text-[10px] mb-1.5 border-b border-dashed border-[#6F77A6] pb-1">
-                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent">
-                <div class="w-1/2 flex justify-between px-1">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                </div>
-            </div>
-
-            <!-- Row 1 -->
-            <div class="flex justify-between items-center text-[10px] mb-1.5 border-b border-dashed border-[#6F77A6] pb-1">
-                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent">
-                <div class="w-1/2 flex justify-between px-1">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                </div>
-            </div>
-
-            <!-- Row 2 -->
-            <div class="flex justify-between items-center text-[10px] mb-1.5 border-b border-dashed border-[#6F77A6] pb-1">
-                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent">
-                <div class="w-1/2 flex justify-between px-1">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                </div>
-            </div>
-
-            <!-- Row 3 -->
-            <div class="flex justify-between items-center text-[10px] mb-1.5 border-b border-dashed border-[#6F77A6] pb-1">
-                <input type="text" placeholder="Abitudine 00" class="w-1/2 outline-none bg-transparent">
-                <div class="w-1/2 flex justify-between px-1">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                    <input type="checkbox" class="check-circle">
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- JavaScript -->
 <script>
-    (function() {
-        'use strict';
-
-        //======DOM SECTION=====
-        const DOM ={
-            THEMEtOGGLE
-        }
-    }
+   
 </script>
 </body>
 
